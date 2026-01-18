@@ -1,0 +1,9 @@
+.active {
+  color: #f07423 !important;
+  transform: scale(1.5);
+}
+
+.categoryActive {
+  background-color: #f07423 !important  ;
+  color: #fff !important  ;
+}
