@@ -1,8 +1,11 @@
 import React from 'react'
+import PageHeader from '../../components/PageHeader'
 
 const About = () => {
   return (
-    <div>About</div>
+    <div>
+      <PageHeader title='About Page' curPage="About"/>
+    </div>
   )
 }
 

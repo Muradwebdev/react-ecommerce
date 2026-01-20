@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const title = "About ShopCart";
 const desc =
@@ -126,30 +127,38 @@ const tweetList = [
 ];
 
 const footerbottomList = [
-  {
-    text: "Faculty",
-    link: "#",
+    {
+    text: "Home",
+    path:'/'
   },
   {
-    text: "Staff",
-    link: "#",
+    text: "Shop",
+    path:'/shop'
   },
   {
-    text: "Students",
-    link: "#",
+    text: "Blog",
+    path:'/blog'
   },
   {
-    text: "Alumni",
-    link: "#",
+    text: "About",
+    path:'/about'
+  },
+  {
+    text: "Contact",
+    path:'/contact'
+  },
+  {
+    text: "Login",
+    path:'/login'
   },
 ];
 
 const Footer = () => {
   return (
-    <div className="style-2">
-      <div className="footer-top dark-view padding-tb bg-black">
+    <footer className="style-2 ">
+      <div className="footer-top dark-view padding-tb ">
         <div className="container">
-          <div className="row g-4 row-cols-xl-4 row-cols-sm-2 row-cols-1 justify-content-center align-items-center">
+          <div className="row g-4 row-cols-xl-4 row-cols-sm-2 row-cols-1 justify-content-center">
             <div className="col">
               <div className="footer-item our-address">
                 <div className="footer-inner">
@@ -162,7 +171,8 @@ const Footer = () => {
                       <ul className="lab-ul office-address">
                         {addressList.map((val, i) => (
                           <li key={i}>
-                            <i className={val.iconName}>{val.text}</i>
+                            <i className={val.iconName}></i>
+                            {val.text}
                           </li>
                         ))}
                       </ul>
@@ -171,7 +181,8 @@ const Footer = () => {
                           <li key={i}>
                             <a href="#" className={val.className}>
                               {" "}
-                              <i className={val.iconName}>{val.text}</i>
+                              <i className={val.iconName}></i>
+                              <span>{val.text}</span>
                             </a>
                           </li>
                         ))}
@@ -211,7 +222,7 @@ const Footer = () => {
                     <div className="content">
                       <ul className="lab-ul office-address">
                         {quickList.map((val, i) => (
-                          <li key={i} className="text-center">
+                          <li key={i}>
                             <a href="#">{val.text}</a>
                           </li>
                         ))}
@@ -231,8 +242,9 @@ const Footer = () => {
                     <div className="content">
                       <ul className="lab-ul office-address">
                         {tweetList.map((val, i) => (
-                          <li key={i}>
-                            <i className={val.iconName}>{val.desc}</i>
+                          <li key={i} className="">
+                            <i className={val.iconName}></i>
+                            {val.desc}
                           </li>
                         ))}
                       </ul>
@@ -244,7 +256,26 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+      <div className="footer-bottom">
+        <div className="container">
+          <div className="section-wrapper">
+            <p>
+              &copy; 2026 <Link to="/">Shop Cart</Link> Designed by{" "}
+              <a href="/" target="blank">
+                Murad Isgandarov
+              </a>
+            </p>
+            <div className="footer-bottom-list">
+              {footerbottomList.map((val, i) => (
+                <Link to={val.path} key={i}>
+                  {val.text}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

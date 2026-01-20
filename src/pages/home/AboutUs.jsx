@@ -1,4 +1,5 @@
 import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 import { Link } from "react-router";
 
 const subTitle = "Why Choose Us";
@@ -26,8 +27,15 @@ const countList = [
 ];
 
 const AboutUs = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
   return (
-    <div className="instructor-section style-2 padding-tb section-bg-ash">
+    <div
+      ref={ref}
+      className="instructor-section style-2 padding-tb section-bg-ash"
+    >
       <div className="container">
         <div className="section-wrapper">
           <div className="row g-4 justify-content-center align-items-center row-cols-1 row-cols-md-2 row-cols-xl-3">
@@ -41,7 +49,7 @@ const AboutUs = () => {
                     <div className="count-content">
                       <h2>
                         <span className="count">
-                          <CountUp end={val.count} />
+                          {inView && <CountUp start={0} duration={3} end={val.count} />}
                         </span>
                       </h2>
                       <p>{val.text}</p>

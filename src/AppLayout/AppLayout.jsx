@@ -8,12 +8,12 @@ const AppLayout = () => {
       <>
         <Header />
       </>
-      <main>
+      <main className="min-vh-100">
         <Outlet />
       </main>
-      <footer>
-        <Footer/>
-      </footer>
+      <>
+        <Footer />
+      </>
     </div>
   );
 };
