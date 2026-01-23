@@ -5,16 +5,22 @@ import ProductCart from "./ProductCart";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../products";
 import Pagination from "./Pagination";
+import Search from "../../components/Search";
+import ShopCategory from "./ShopCategory";
 const showResults = "Showing 01-12 of 139 Results";
 
 const Shop = () => {
-  const { data } = useQuery({
+  // ReactQuery
+  const { data, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
   });
 
+  // useState
   const [gridList, setGridList] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [products, setProducts] = useState(data);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   // pagination
 
@@ -26,6 +32,19 @@ const Shop = () => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const menuItems = [...new Set(data?.map((val) => val.category))];
+  const filterItem = (curcat) => {
+    if (curcat === "All") {
+      setProducts(data);
+    } else {
+      const newItem = data?.filter((newVal) => newVal.category === curcat);
+      setProducts(newItem);
+    }
+    setSelectedCategory(curcat);
+  };
+
+  if (isLoading) return <Loader />;
 
   return (
     <div>
@@ -63,7 +82,19 @@ const Shop = () => {
                 />
               </article>
             </div>
-            <div className="col-lg-4 col-12"></div>
+            <div className="col-lg-4 col-12">
+              <aside>
+                <Search products={data} gridList={gridList} />
+                <ShopCategory
+                  data={data}
+                  filterItem={filterItem}
+                  setItem={setProducts}
+                  menuItems={menuItems}
+                  setProducts={setProducts}
+                  selectedCategory={selectedCategory}
+                />
+              </aside>
+            </div>
           </div>
         </div>
       </div>

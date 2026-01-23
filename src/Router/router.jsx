@@ -3,12 +3,14 @@ import AppLayout from "../AppLayout/AppLayout";
 import { productsLoader as homeLoader } from "../products";
 import { productsLoader as shopLoader } from "../products";
 import Error from "../UI/Error";
-import Home from "../pages/home/Home";
+// import Home from "../pages/home/Home";
 import Shop from "../pages/shop/Shop";
 import About from "../pages/about/About";
 import Blog from "../pages/blog/Blog";
 import Contact from "../pages/contact/Contact";
+import { lazy } from "react";
 
+const Home = lazy(() => import("../pages/home/Home"));
 export const router = createBrowserRouter([
   {
     errorElement: <Error />,

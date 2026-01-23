@@ -8,13 +8,14 @@ import LocationSprade from "./LocationSprade";
 import AboutUs from "./AboutUs";
 import AppSection from "./AppSection";
 import Sponsor from "./Sponsor";
+import Loader from "../../components/Loader";
 
 const Home = () => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
   });
-
+  if (isLoading) return <Loader />;
   return (
     <div>
       <Banner data={data} />

@@ -13,9 +13,10 @@ const Pagination = ({
     <ul className="default-pagination lab-ul">
       <li>
         <a
-          href=""
-          onClick={() => {
-            if (activePage < pageNumbers.length) {
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            if (activePage > 1) {
               paginate(activePage - 1);
             }
           }}
@@ -26,7 +27,7 @@ const Pagination = ({
       {pageNumbers.map((number) => (
         <li
           key={number}
-          className={`page-item ${number === activePage ? "bg-warning" : ""}`}
+          className={`page-item ${number === activePage ? "bg-warning" : ""} rounded-circle`}
         >
           <button onClick={() => paginate(number)} className="bg-transparent">
             {number}
@@ -35,8 +36,9 @@ const Pagination = ({
       ))}
       <li>
         <a
-          href=""
-          onClick={() => {
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
             if (activePage < pageNumbers.length) {
               paginate(activePage + 1);
             }
