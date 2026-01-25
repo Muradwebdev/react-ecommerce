@@ -24,7 +24,7 @@ const AppSection = () => {
               </a>
             </li>{" "}
             <li>
-              <a href="#">
+              <a href="https://play.google.com/store/games?device=windows">
                 <img src="/src/assets/images/app/02.jpg" alt="" />
               </a>
             </li>

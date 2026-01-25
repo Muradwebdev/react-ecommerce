@@ -32,16 +32,19 @@ const sponsorList = [
 
 const Sponsor = () => {
   return (
-    <div className="sponsor-section section-bg">
-      <div className="container">
+    <div className="sponsor-section section-bg ">
+      <div className="container ">
         <div className="section-wrapper">
           <div className="sponsor-slider">
             <Swiper
               slidesPerView={2}
               spaceBetween={20}
+              loop={true}
+              speed={1000}
               autoplay={{
-                delay: 2000,
+                delay: 1000,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
               breakpoints={{
                 640: {

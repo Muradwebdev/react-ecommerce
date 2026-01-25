@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageHeader from "../../components/PageHeader";
 // import Data from "../prducts.json";
 import ProductCart from "./ProductCart";
@@ -7,6 +7,7 @@ import { getProducts } from "../../products";
 import Pagination from "./Pagination";
 import Search from "../../components/Search";
 import ShopCategory from "./ShopCategory";
+
 const showResults = "Showing 01-12 of 139 Results";
 
 const Shop = () => {
@@ -19,15 +20,22 @@ const Shop = () => {
   // useState
   const [gridList, setGridList] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [products, setProducts] = useState(data);
+  const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  useEffect(() => {
+    if (data) setProducts(data);
+  }, [data]);
 
   // pagination
 
   const productsPerPage = 12;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOffFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = data?.slice(indexOffFirstProduct, indexOfLastProduct);
+  const currentProducts = products?.slice(
+    indexOffFirstProduct,
+    indexOfLastProduct,
+  );
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -38,10 +46,11 @@ const Shop = () => {
     if (curcat === "All") {
       setProducts(data);
     } else {
-      const newItem = data?.filter((newVal) => newVal.category === curcat);
+      const newItem = data.filter((item) => item.category === curcat);
       setProducts(newItem);
     }
     setSelectedCategory(curcat);
+    setCurrentPage(1);
   };
 
   if (isLoading) return <Loader />;
@@ -76,7 +85,7 @@ const Shop = () => {
                 </div>
                 <Pagination
                   productsPerPage={productsPerPage}
-                  totalProducts={data?.length}
+                  totalProducts={products?.length}
                   paginate={paginate}
                   activePage={currentPage}
                 />
