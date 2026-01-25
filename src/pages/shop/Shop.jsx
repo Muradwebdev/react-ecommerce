@@ -8,15 +8,13 @@ import Pagination from "./Pagination";
 import Search from "../../components/Search";
 import ShopCategory from "./ShopCategory";
 
-const showResults = "Showing 01-12 of 139 Results";
-
 const Shop = () => {
   // ReactQuery
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
   });
-
+  const showResults = `Showing 01-12 of ${data.length}  Results`;
   // useState
   const [gridList, setGridList] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -70,12 +68,22 @@ const Shop = () => {
                   >
                     <a
                       href="#"
-                      className="grid"
-                      onClick={() => setGridList(!gridList)}
+                      className={`grid ${gridList ? "active" : ""}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setGridList(true);
+                      }}
                     >
                       <i className="icofont-ghost"></i>
                     </a>
-                    <a href="#" className="grid">
+                    <a
+                      href="#"
+                      className={`list ${!gridList ? "active" : ""}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setGridList(false);
+                      }}
+                    >
                       <i className="icofont-listine-dots"></i>
                     </a>
                   </div>
