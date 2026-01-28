@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-const Search = ({ products, gridList }) => {
-  console.log(products);
+const Search = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const filteredProducts =
     products &&

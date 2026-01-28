@@ -7,6 +7,7 @@ const ShopCategory = ({
   menuItems,
   setProducts,
   selectedCategory,
+  setSelectedCategory,
 }) => {
   return (
     <>
@@ -15,7 +16,10 @@ const ShopCategory = ({
       </div>
       <div>
         <button
-          onClick={() => setProducts(data)}
+          onClick={() => {
+            setProducts(data);
+            setSelectedCategory("All");
+          }}
           className={`m-2 ${selectedCategory === "All" ? "bg-warning" : ""}`}
         >
           All

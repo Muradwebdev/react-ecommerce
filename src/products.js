@@ -52,3 +52,18 @@ export async function categoryProducts() {
     return categoryproducts;
   }
 }
+
+export async function getProductsById(id) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", id);
+  // .single();
+
+  if (error) {
+    console.error("Product tapılmadı:", error.message);
+    throw error;
+  }
+
+  return data;
+}

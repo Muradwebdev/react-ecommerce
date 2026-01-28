@@ -15,6 +15,7 @@ const Home = () => {
     queryKey: ["products"],
     queryFn: getProducts,
   });
+  console.log(data)
   if (isLoading) return <Loader />;
   return (
     <div>

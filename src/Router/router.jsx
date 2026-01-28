@@ -1,14 +1,15 @@
-import { createBrowserRouter } from "react-router";
+import { lazy } from "react";
 import AppLayout from "../AppLayout/AppLayout";
+import { createBrowserRouter } from "react-router";
 import { productsLoader as homeLoader } from "../products";
 import { productsLoader as shopLoader } from "../products";
-import Error from "../UI/Error";
 // import Home from "../pages/home/Home";
 import Shop from "../pages/shop/Shop";
 import About from "../pages/about/About";
 import Blog from "../pages/blog/Blog";
 import Contact from "../pages/contact/Contact";
-import { lazy } from "react";
+import SingleProduct from "../pages/shop/SingleProduct";
+import Error from "../UI/Error";
 
 const Home = lazy(() => import("../pages/home/Home"));
 export const router = createBrowserRouter([
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home />, loader: homeLoader },
       { path: "/shop", element: <Shop />, loader: shopLoader },
+      { path: "/shop/:id", element: <SingleProduct/> },
       { path: "/blog", element: <Blog /> },
       { path: "/about", element: <About /> },
       { path: "/contact", element: <Contact /> },

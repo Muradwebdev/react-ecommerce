@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import PageHeader from "../../components/PageHeader";
-// import Data from "../prducts.json";
+// import Data from "../products.json";
 import ProductCart from "./ProductCart";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../products";
 import Pagination from "./Pagination";
 import Search from "../../components/Search";
 import ShopCategory from "./ShopCategory";
+import PopularPost from "./PopularPost";
+import Tags from "./Tags";
+import Loader from "../../components/Loader";
 
 const Shop = () => {
   // ReactQuery
@@ -14,7 +17,6 @@ const Shop = () => {
     queryKey: ["products"],
     queryFn: getProducts,
   });
-  const showResults = `Showing 01-12 of ${data.length}  Results`;
   // useState
   const [gridList, setGridList] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,9 +24,10 @@ const Shop = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
-    if (data) setProducts(data);
+    setProducts(data);
   }, [data]);
 
+  const showResults = `Showing 01-12 of ${gridList ? data.length : 0}  Results`;
   // pagination
 
   const productsPerPage = 12;
@@ -96,6 +99,7 @@ const Shop = () => {
                   totalProducts={products?.length}
                   paginate={paginate}
                   activePage={currentPage}
+                  gridList={gridList}
                 />
               </article>
             </div>
@@ -108,8 +112,11 @@ const Shop = () => {
                   setItem={setProducts}
                   menuItems={menuItems}
                   setProducts={setProducts}
+                  setSelectedCategory={setSelectedCategory}
                   selectedCategory={selectedCategory}
                 />
+                <PopularPost />
+                <Tags />
               </aside>
             </div>
           </div>
