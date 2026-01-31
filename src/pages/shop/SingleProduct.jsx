@@ -10,6 +10,7 @@ import { Autoplay } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import ProductDisplay from "./ProductDisplay";
+import Review from "./Review";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -84,7 +85,9 @@ const SingleProduct = () => {
                     </div>
                   </div>
                 </div>
-                <div className="review">rewiwe</div>
+                <div className="review">
+                  <Review />
+                </div>
               </article>
             </div>
             <div className="col-lg-4 col-12">right</div>

@@ -11544,3 +11544,19 @@ footer.style-2 .footer-top.dark-view * {
     margin-top: 0;
   }
 } /*# sourceMappingURL=style.min.css.map */
+.cart-plus-minus {
+  position: static !important;
+  display: flex;
+  align-items: center;
+}
+
+.car-plus-minus-box {
+  position: static !important;
+  width: 50px;
+  text-align: center;
+  margin: 0 8px;
+}
+
+.qtybutton {
+  position: static !important;
+}

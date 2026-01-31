@@ -25,7 +25,7 @@ const Shop = () => {
 
   useEffect(() => {
     setProducts(data);
-  }, [data]);
+  }, [data]); 
 
   const showResults = `Showing 01-12 of ${gridList ? data.length : 0}  Results`;
   // pagination
