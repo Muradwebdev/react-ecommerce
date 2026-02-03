@@ -15,16 +15,6 @@ const supabaseKey = "sb_publishable_efW7ES5dtkDxuSt1tM02KA_S7U8L8q5";
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export async function getProducts() {
-  const { data, error } = await supabase.from("products").select("*");
-
-  if (error) {
-    console.error("Xəta baş verdi:", error.message);
-  } else {
-    return data;
-  }
-}
-
 export const productsLoader = async () => {
   const productsPromise = queryClient.ensureQueryData({
     queryKey: ["products"],
@@ -35,12 +25,26 @@ export const productsLoader = async () => {
     queryKey: ["categories"],
     queryFn: categoryProducts,
   });
-
+  const categoryListPromise = queryClient.ensureQueryData({
+    queryKey: ["categoryList"],
+    queryFn: categoryList,
+  });
   return {
     products: await productsPromise,
     categories: await categoriesPromise,
+    categoryList: await categoryListPromise,
   };
 };
+
+export async function getProducts() {
+  const { data, error } = await supabase.from("products").select("*");
+
+  if (error) {
+    console.error("Xəta baş verdi:", error.message);
+  } else {
+    return data;
+  }
+}
 
 export async function categoryProducts() {
   let { data: categoryproducts, error } = await supabase
@@ -50,6 +54,18 @@ export async function categoryProducts() {
     console.error("Xəta baş verdi:", error.message);
   } else {
     return categoryproducts;
+  }
+}
+
+export async function categoryList() {
+  let { data: categoryList, error } = await supabase
+    .from("categoryList")
+    .select("*");
+
+  if (error) {
+    console.error("Xəta baş verdi:", error.message);
+  } else {
+    return categoryList;
   }
 }
 

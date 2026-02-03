@@ -7,7 +7,67 @@
     <title>react-ecommerce</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <style>
+        .loading-screen {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          background-color: #ffffff;
+        }
+        .progress-container {
+          width: 300px;
+          height: 10px;
+          background-color: #eee;
+          border-radius: 5px;
+          overflow: hidden;
+          border: 1px solid #ddd;
+        }
+        .progress-bar {
+          width: 0%;
+          height: 100%;
+          background-color: #ffe040;
+          animation: realistic-load 4s forwards
+            cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .loading-text {
+          margin-top: 15px;
+          font-family: "Segoe UI", sans-serif;
+          font-weight: bold;
+          color: #ffe040;
+        }
+
+        @keyframes realistic-load {
+          0% {
+            width: 0%;
+          }
+          10% {
+            width: 20%;
+          }
+          30% {
+            width: 45%;
+          }
+          60% {
+            width: 75%;
+          }
+          90% {
+            width: 92%;
+          }
+          100% {
+            width: 98%;
+          }
+        }
+      </style>
+
+      <div class="loading-screen">
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="loading-text">Loading...</div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

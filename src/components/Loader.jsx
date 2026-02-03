@@ -1,9 +1,16 @@
+import { ThreeDot } from "react-loading-indicators";
 import { HashLoader } from "react-spinners";
 
 const Loader = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <HashLoader color="#ff3366" size={80} />
+      <ThreeDot
+        variant="bounce"
+        color="#ffe040"
+        size="medium"
+        text=""
+        textColor=""
+      />
     </div>
   );
 };

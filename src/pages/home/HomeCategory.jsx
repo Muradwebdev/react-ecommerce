@@ -1,48 +1,54 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router";
+import { categoryList } from "../../products";
 const subTitle = "Choose Any Products";
 const title = "Buy Everything with Us";
 const btnText = "Get Started Now";
 
-const categoryList = [
-  {
-    imgUrl: "src/assets/images/category/01.jpg",
-    imgAlt: "category rajibraj91 rajibraj",
-    iconName: "icofont-brand-windows",
-    title: "DSLR Camera",
-  },
-  {
-    imgUrl: "src/assets/images/category/02.jpg",
-    imgAlt: "category rajibraj91 rajibraj",
-    iconName: "icofont-brand-windows",
-    title: "Shoes",
-  },
-  {
-    imgUrl: "src/assets/images/category/03.jpg",
-    imgAlt: "category rajibraj91 rajibraj",
-    iconName: "icofont-brand-windows",
-    title: "Photography",
-  },
-  {
-    imgUrl: "src/assets/images/category/04.jpg",
-    imgAlt: "category rajibraj91 rajibraj",
-    iconName: "icofont-brand-windows",
-    title: "Formal Dress",
-  },
-  {
-    imgUrl: "src/assets/images/category/05.jpg",
-    imgAlt: "category rajibraj91 rajibraj",
-    iconName: "icofont-brand-windows",
-    title: "Colorful Bags",
-  },
-  {
-    imgUrl: "src/assets/images/category/06.jpg",
-    imgAlt: "category rajibraj91 rajibraj",
-    iconName: "icofont-brand-windows",
-    title: "Home Decor",
-  },
-];
+// const categoryList = [
+//   {
+//     imgUrl: "src/assets/images/category/01.jpg",
+//     imgAlt: "category rajibraj91 rajibraj",
+//     iconName: "icofont-brand-windows",
+//     title: "DSLR Camera",
+//   },
+//   {
+//     imgUrl: "src/assets/images/category/02.jpg",
+//     imgAlt: "category rajibraj91 rajibraj",
+//     iconName: "icofont-brand-windows",
+//     title: "Shoes",
+//   },
+//   {
+//     imgUrl: "src/assets/images/category/03.jpg",
+//     imgAlt: "category rajibraj91 rajibraj",
+//     iconName: "icofont-brand-windows",
+//     title: "Photography",
+//   },
+//   {
+//     imgUrl: "src/assets/images/category/04.jpg",
+//     imgAlt: "category rajibraj91 rajibraj",
+//     iconName: "icofont-brand-windows",
+//     title: "Formal Dress",
+//   },
+//   {
+//     imgUrl: "src/assets/images/category/05.jpg",
+//     imgAlt: "category rajibraj91 rajibraj",
+//     iconName: "icofont-brand-windows",
+//     title: "Colorful Bags",
+//   },
+//   {
+//     imgUrl: "src/assets/images/category/06.jpg",
+//     imgAlt: "category rajibraj91 rajibraj",
+//     iconName: "icofont-brand-windows",
+//     title: "Home Decor",
+//   },
+// ];
 const HomeCategory = () => {
+  const { data } = useQuery({
+    queryKey: ["categoryList"],
+    queryFn: categoryList,
+  });
   return (
     <div className="category-section style-4 padding-tb">
       <div className="container">
@@ -54,7 +60,7 @@ const HomeCategory = () => {
         {/* section card */}
         <div className="section-wrapper">
           <div className="row g-4 justify-content-center row-cols-md-3 row-cols-sm-2 row-cols-1 ">
-            {categoryList.map((val, i) => (
+            {data.map((val, i) => (
               <div key={i}>
                 <Link to="/shop" className="category-item">
                   <div className="category-inner">

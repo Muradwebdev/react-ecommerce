@@ -11,6 +11,8 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import ProductDisplay from "./ProductDisplay";
 import Review from "./Review";
+import PopularPost from "./PopularPost";
+import Tags from "./Tags";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -20,7 +22,7 @@ const SingleProduct = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["product", id],
+    queryKey: ["products", id],
     queryFn: () => getProductsById(id),
     enabled: !!id,
   });
@@ -90,7 +92,12 @@ const SingleProduct = () => {
                 </div>
               </article>
             </div>
-            <div className="col-lg-4 col-12">right</div>
+            <div className="col-lg-4 col-12">
+              <aside className="ps-lg-4">
+                <PopularPost />
+                <Tags />
+              </aside>
+            </div>
           </div>
         </div>
       </div>

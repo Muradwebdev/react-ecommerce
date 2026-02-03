@@ -37,12 +37,13 @@ const Review = () => {
   return (
     <div>
       <ul
-        className={`rewiev-nav lab-ul ${rewievShow ? "RewActive" : "DescActive"}`}
+        className={`review-nav lab-ul ${rewievShow ? "RewActive" : "DescActive"}`}
       >
-        <li className="desc" onClick={() => setRewievShow(!rewievShow)}>
+        <li className="desc" onClick={() => setRewievShow(false)}>
           Description
         </li>
-        <li className="rew" onClick={() => setRewievShow(!rewievShow)}>
+        <img src="" alt="" />
+        <li className="rew" onClick={() => setRewievShow(true)}>
           Rewievs
         </li>
       </ul>
@@ -114,6 +115,51 @@ const Review = () => {
             </form>
           </div>
           {/* description */}
+          <div className="description">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+              recusandae tempore, aperiam corporis repudiandae quae delectus
+              numquam cumque in obcaecati! Vero magnam praesentium perferendis
+              doloremque enim ab pariatur placeat molestias?
+            </p>
+            <div className="post-item">
+              <div className="post-thumb">
+                <img src="./src/assets/images/shop/01.jpg" alt="" />
+              </div>
+              <div className="post-content">
+                <ul className="lab-ul">
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam, ipsum.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam, ipsum.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam, ipsum.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam, ipsum.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam, ipsum.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam, ipsum.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam, ipsum.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

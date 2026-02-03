@@ -18,10 +18,13 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "././assets/css/icofont.min.css";
 import "././assets/css/animate.css";
 import "././assets/css/style.min.css";
-
+import { Suspense } from "react";
+import Loader from "./components/Loader";
 createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={false} />
-    <RouterProvider router={router} />
+    <Suspense fallback={<Loader />}>
+      <RouterProvider router={router} fallbackElement={<Loader />} />
+    </Suspense>
   </QueryClientProvider>,
 );
