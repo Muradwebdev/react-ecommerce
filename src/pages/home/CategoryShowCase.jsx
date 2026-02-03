@@ -1,95 +1,25 @@
 import React, { useState } from "react";
 import Rating from "../../components/Rating";
 import { Link } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import { categoryProducts } from "../../products";
 const title = "Our Products";
 
-const ProductData = [
-  {
-    imgUrl: "src/assets/images/categoryTab/01.jpg",
-    cate: "Shoes",
-    title: "Nike Premier X",
-    author: "assets/images/course/author/01.jpg",
-    brand: "Nike",
-    price: "$199.00",
-    id: 1,
-  },
-  {
-    imgUrl: "src/assets/images/categoryTab/02.jpg",
-    cate: "Bags",
-    title: "Asthetic Bags",
-    author: "assets/images/course/author/02.jpg",
-    brand: "D&J Bags",
-    price: "$199.00",
-    id: 2,
-  },
-  {
-    imgUrl: "src/assets/images/categoryTab/03.jpg",
-    cate: "Phones",
-    title: "iPhone 12",
-    author: "src/assets/images/categoryTab/brand/apple.png",
-    brand: "Apple",
-    price: "$199.00",
-    id: 3,
-  },
-  {
-    imgUrl: "src/assets/images/categoryTab/04.jpg",
-    cate: "Bags",
-    title: "Hiking Bag 15 Nh100",
-    author: "assets/images/course/author/04.jpg",
-    brand: "Gucci",
-    price: "$199.00",
-    id: 4,
-  },
-  {
-    imgUrl: "src/assets/images/categoryTab/05.jpg",
-    cate: "Shoes",
-    title: "Outdoor Sports Shoes",
-    author: "assets/images/course/author/05.jpg",
-    brand: "Nike",
-    price: "$199.00",
-    id: 5,
-  },
-  {
-    imgUrl: "src/assets/images/categoryTab/06.jpg",
-    cate: "Beauty",
-    title: "COSRX Snail Mucin",
-    author: "assets/images/course/author/06.jpg",
-    brand: "Zaara",
-    price: "$199.00",
-    id: 6,
-  },
-  {
-    imgUrl: "src/assets/images/categoryTab/07.jpg",
-    cate: "Bags",
-    title: "Look Less Chanel Bag ",
-    author: "assets/images/course/author/01.jpg",
-    brand: "Gucci",
-    price: "$199.00",
-    id: 7,
-  },
-  {
-    imgUrl: "src/assets/images/categoryTab/08.jpg",
-    cate: "Shoes",
-    title: "Casual Sneakers",
-    author: "assets/images/course/author/02.jpg",
-    brand: "Bata",
-    price: "$199.00",
-    id: 8,
-  },
-];
 const CategoryShowCase = () => {
-  const [items, setItems] = useState(ProductData);
+  const { data, isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: categoryProducts,
+  });
+console.log( data)
   const [active, setActive] = useState("All");
-  const filterItem = (text) => {
-    setActive(text);
-    if (text === "All") {
-      return setItems(ProductData);
-    }
-    const filtered = ProductData.filter(
-      (data) => data.cate.toUpperCase() === text.toUpperCase(),
-    );
-    setItems(filtered);
-  };
+  const filteredItems =
+    active === "All"
+      ? data
+      : data?.filter(
+          (item) => item?.category.toLowerCase() === active.toLowerCase(),
+        );
+
+  if (isLoading) return <div>Yüklənir...</div>;
   return (
     <div className="course-section style-3 padding-tb">
       <div className="course-shape one">
@@ -108,31 +38,31 @@ const CategoryShowCase = () => {
             <ul className="lab-ul">
               <li
                 className={active === "All" ? "categoryActive" : ""}
-                onClick={() => filterItem("All")}
+                onClick={() => setActive("All")}
               >
                 All
               </li>
               <li
                 className={active === "Shoes" ? "categoryActive" : ""}
-                onClick={() => filterItem("Shoes")}
+                onClick={() => setActive("Shoes")}
               >
                 Shoes
               </li>
               <li
                 className={active === "Bags" ? "categoryActive" : ""}
-                onClick={() => filterItem("Bags")}
+                onClick={() => setActive("Bags")}
               >
                 Bags
               </li>
               <li
                 className={active === "Phones" ? "categoryActive" : ""}
-                onClick={() => filterItem("Phones")}
+                onClick={() => setActive("Phones")}
               >
                 Phones
               </li>
               <li
                 className={active === "Beauty" ? "categoryActive" : ""}
-                onClick={() => filterItem("Beauty")}
+                onClick={() => setActive("Beauty")}
               >
                 Beauty
               </li>
@@ -142,15 +72,15 @@ const CategoryShowCase = () => {
         {/* section body */}
         <div className="section-wrapper">
           <div className="row g-4 justify-content-center row-col-xl-4 row-cols-lg-3 row-cols-md-2 course-filter row-cols-1">
-            {items.map((item, i) => (
+            {filteredItems?.map((item, i) => (
               <div key={i}>
                 <div className="course-item style-4">
                   <div className="course-inner">
                     <div className="course-thumb">
-                      <img src={item.imgUrl} alt="" />
+                      <img src={item?.img_url} alt="" />
                       <div className="course-category">
                         <div className="course-cate">
-                          <a href="#">{item.cate}</a>
+                          <a href="#">{item?.category}</a>
                         </div>
                         <div className="course-reiew">
                           <Rating />
@@ -159,12 +89,12 @@ const CategoryShowCase = () => {
                     </div>
                     <div className="course-content">
                       <Link to={`/shop/${item.id}`}>
-                        <h6>{item.title}</h6>
+                        <h6>{item?.title}</h6>
                       </Link>
                       <div className="course-footer">
                         <div className="course-author">
                           <Link to="/" className="ca-name">
-                            {item.brand}
+                            {item?.brand}
                           </Link>
                         </div>
                         <div className="course-price">{item.price}</div>
