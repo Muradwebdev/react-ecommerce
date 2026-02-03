@@ -11,7 +11,7 @@ const CategoryShowCase = () => {
     queryKey: ["categories"],
     queryFn: categoryProducts,
   });
-console.log( data)
+  console.log(data);
   const [active, setActive] = useState("All");
   const filteredItems =
     active === "All"
@@ -89,7 +89,7 @@ console.log( data)
                       </div>
                     </div>
                     <div className="course-content">
-                      <Link to={`/shop/${item.id}`}>
+                      <Link to={`/shop/${item?.product_id}`}>
                         <h6>{item?.title}</h6>
                       </Link>
                       <div className="course-footer">
