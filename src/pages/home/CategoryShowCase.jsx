@@ -3,6 +3,7 @@ import Rating from "../../components/Rating";
 import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { categoryProducts } from "../../products";
+
 const title = "Our Products";
 
 const CategoryShowCase = () => {
