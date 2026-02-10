@@ -1,7 +1,14 @@
+
+.inputbox input {
+  border: none;
+}
+
 .active {
   color: #f07423 !important;
 }
-
+li {
+  list-style: none;
+}
 .categoryActive {
   background-color: #f07423 !important  ;
   color: #fff !important  ;
@@ -18,7 +25,6 @@
   align-items: center;
   z-index: 9999;
 }
-
 
 #initial-loader {
   position: fixed;
@@ -39,7 +45,16 @@
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.8); opacity: 0.5; }
-  50% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(0.8); opacity: 0.5; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
 }

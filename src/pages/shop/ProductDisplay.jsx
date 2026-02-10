@@ -17,7 +17,7 @@ const ProductDisplay = ({ item }) => {
     shipping,
     quantity,
   } = item;
-  const [prequantity, setPrequantity] = useState(quantity);
+  const [prequantity, setPrequantity] = useState(quantity || 1);
   const [coupon, setCoupon] = useState("");
   const [size, setSize] = useState("Select Size");
   const [color, setColor] = useState("Select Color");
@@ -74,7 +74,6 @@ const ProductDisplay = ({ item }) => {
   function handleIncrease() {
     setPrequantity((prequantity) => prequantity + 1);
   }
-
   return (
     <div>
       <div>
@@ -119,7 +118,6 @@ const ProductDisplay = ({ item }) => {
           </div>
 
           {/* cart plus minus */}
-          <div></div>
           <div className="cart-plus-minus">
             <div className="dec qtybutton" onClick={handleDecrease}>
               -
