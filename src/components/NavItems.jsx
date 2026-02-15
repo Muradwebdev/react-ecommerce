@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/images/logo/logo.png";
+import { AuthContext } from "../contexts/AuthProvider";
 const NavItems = ({ setHeaderFixed }) => {
   const [menuToggle, setMenuToggle] = useState(false);
 
   const [socialToogle, setSocialToogle] = useState(false);
-
+  const { user } = useContext(AuthContext);
+  console.log(user);
   window.addEventListener("scroll", () => {
-    if (window.scrollX > 200) {
+    if (window.scrollY > 200) {
       setHeaderFixed(true);
     } else {
       setHeaderFixed(false);

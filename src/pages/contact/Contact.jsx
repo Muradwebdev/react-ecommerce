@@ -13,19 +13,19 @@ const contactList = [
     imgUrl: "/src/assets/images/icon/01.png",
     imgAlt: "contact icon",
     title: "Office Address",
-    desc: "1201 park street, Fifth Avenue",
+    desc: "Azerbaijan , Baku",
   },
   {
     imgUrl: "/src/assets/images/icon/02.png",
     imgAlt: "contact icon",
     title: "Phone number",
-    desc: "+22698 745 632,02 982 745",
+    desc: "xxxxxxx",
   },
   {
     imgUrl: "/src/assets/images/icon/03.png",
     imgAlt: "contact icon",
     title: "Send email",
-    desc: "admin@shopcart.com",
+    desc: "xxxxxxxx@gmail.com",
   },
   {
     imgUrl: "/src/assets/images/icon/04.png",
@@ -46,7 +46,7 @@ const Contact = () => {
             <h2 className="title">{title}</h2>
           </div>
           <div className="section-wrapper">
-            <div className="row flex-row-reverse">
+            <div className=" row flex-row-reverse">
               <div className="col-xl-4 col-lg-5 col-12">
                 <div className="contact-wrapper">
                   {contactList.map((val, i) => (
@@ -63,7 +63,67 @@ const Contact = () => {
                 </div>
               </div>
               {/* google map */}
-              <GoogleMap />
+              <div className="col-xl-8 col-lg-7 col-12">
+                <GoogleMap />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="contact-section padding-tb">
+        <div className="container">
+          <div className="section-header text-center">
+            <span className="subtitle">{conSubTitle}</span>
+            <h2 className="title">{conTitle}</h2>
+          </div>
+          <div className="section-wrapper">
+            <div className="contact-form">
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Your Name"
+                />
+              </div>{" "}
+              <div className="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Your Email"
+                />
+              </div>{" "}
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Phone Number"
+                />
+              </div>{" "}
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="subject"
+                  id="subject"
+                  placeholder="Subject"
+                />
+              </div>
+              <div className="form-group w-100">
+                <textarea
+                  type="message"
+                  name="message"
+                  id="message"
+                  rows="8"
+                  placeholder="Your Message"
+                ></textarea>
+              </div>
+              <div className="form-group w-100 text-center">
+                <button className="lab-btn">
+                  <span>{btnText}</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

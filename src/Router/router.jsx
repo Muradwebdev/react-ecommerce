@@ -14,6 +14,9 @@ import CartPage from "../pages/shop/CartPage";
 import Loader from "../components/Loader";
 import Blog from "../pages/blog/Blog";
 import SingleBlogPage from "../pages/blog/SingleBlogPage";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Login from "../pages/sign/Login";
+import SignUp from "../pages/sign/SignUp";
 
 const Home = lazy(() => import("../pages/home/Home"));
 
@@ -38,12 +41,23 @@ export const router = createBrowserRouter([
       },
       { path: "/shop", element: <Shop />, loader: shopLoader },
       { path: "/shop/:id", element: <SingleProduct /> },
-      { path: "/cart-page", element: <CartPage /> },
+      {
+        path: "/cart-page",
+        element: (
+          <PrivateRoute>
+            <CartPage />
+          </PrivateRoute>
+        ),
+      },
       { path: "/blog", element: <Blog /> },
       { path: "/blog/:id", element: <SingleBlogPage /> },
       { path: "/about", element: <About /> },
       { path: "/contact", element: <Contact /> },
-      { path: "/sign-up", element: <div>sign ip</div> },
     ],
   },
+  {
+    path: "login",
+    element: <Login />,
+  },
+  { path: "/signup", element: <SignUp /> },
 ]);

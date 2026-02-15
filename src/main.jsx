@@ -19,11 +19,14 @@ import "././assets/css/animate.css";
 import "././assets/css/style.min.css";
 import { Suspense } from "react";
 import Loader from "./components/Loader";
+import AuthProvider from "./contexts/AuthProvider";
 createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={false} />
     <Suspense fallback={<Loader />}>
-      <RouterProvider router={router} fallbackElement={<Loader />} />
+      <AuthProvider>
+        <RouterProvider router={router} fallbackElement={<Loader />} />
+      </AuthProvider>
     </Suspense>
   </QueryClientProvider>,
 );
